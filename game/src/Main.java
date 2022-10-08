@@ -1,7 +1,9 @@
 import Core2D.Camera2D.Camera2D;
 import Core2D.Camera2D.CamerasManager;
+import Core2D.Component.Components.Rigidbody2DComponent;
 import Core2D.Component.Components.TransformComponent;
 import Core2D.Controllers.PC.Keyboard;
+import Core2D.Controllers.PC.Mouse;
 import Core2D.Core2D.Core2D;
 import Core2D.Core2D.Core2DUserCallback;
 import Core2D.Object2D.Transform;
@@ -31,6 +33,8 @@ public class Main
     private static List<Enemy> enemies = new ArrayList<>();
 
     private static Vector2f playerSpeed = new Vector2f(200.0f, 200.0f);
+
+    private static List<Bullet> bullets = new ArrayList<>();
 
     public static void main(String[] args)
     {
@@ -75,6 +79,10 @@ public class Main
                         enemies.add(enemy);
                     }
                 }
+
+                for(int i = 0; i < bullets.size(); i++) {
+                    Core2D.getMainRenderer().render(bullets.get(i).getEntityObj());
+                }
             }
 
             @Override
@@ -92,10 +100,24 @@ public class Main
                 if(Keyboard.keyDown(GLFW.GLFW_KEY_S)) {
                     playerTransform.translate(new Vector2f(0.0f, -playerSpeed.y * v));
                 }
+
+                if(Mouse.buttonPressed(GLFW.GLFW_MOUSE_BUTTON_1)) {
+                    Bullet bullet = new Bullet();
+                    Vector2f originalForce = new Vector2f(30.0f * 2, 30.0f * 2);;
+
+                    Vector2f mouseOGLPos = Mouse.getMouseOGLPosition(Mouse.getMousePosition());
+                    Vector2f dif = new Vector2f(mouseOGLPos).add(new Vector2f(playerTransform.getPosition()).negate()).normalize();
+
+                    Vector2f force = new Vector2f(originalForce.x * dif.x, originalForce.y * dif.y);
+
+                    bullet.getEntityObj().getComponent(TransformComponent.class).getTransform().applyLinearImpulse(
+                            new Vector2f(force.x, force.y), new Vector2f());
+                    bullets.add(bullet);
+                }
             }
         };
 
         Core2D.core2DUserCallback = core2DUserCallback;
-        Core2D.start("хуйня", new Vector2i(1040, 720));
+        Core2D.start("game", new Vector2i(1040, 720));
     }
 }

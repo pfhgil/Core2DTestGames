@@ -11,13 +11,13 @@ import org.joml.Vector4f;
 public class Enemy extends Entity
 {
     public Enemy()
-    {
-        super();
+    {;
         entityObj.getComponent(TransformComponent.class).getTransform().setScale(new Vector2f(0.5f, 1.0f));
         entityObj.setColor(new Vector4f(1.0f, 0.0f, 0.0f, 1.0f));
 
         Rigidbody2DComponent rb = new Rigidbody2DComponent();
         rb.getRigidbody2D().setType(BodyType.DYNAMIC);
+        rb.getRigidbody2D().setFixedRotation(true);
 
         BoxCollider2DComponent box = new BoxCollider2DComponent();
         box.getBoxCollider2D().setScale(new Vector2f(0.5f, 1.0f));

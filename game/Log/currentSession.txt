@@ -1,4 +1,4 @@
-[#FFFFFF] 2022/10/08 09:51:28 | [#008000] Log directory was founded!
-[#FFFFFF] 2022/10/08 09:51:28 | [#008000] Current session log file was created!
-[#FFFFFF] 2022/10/08 09:51:28 | [#FFFFFF] Starting Core2D...
-[#FFFFFF] 2022/10/08 09:51:28 | [#008000] Core2D started!
+[#FFFFFF] 2022/10/08 11:31:04 | [#008000] Log directory was founded!
+[#FFFFFF] 2022/10/08 11:31:04 | [#008000] Current session log file was created!
+[#FFFFFF] 2022/10/08 11:31:04 | [#FFFFFF] Starting Core2D...
+[#FFFFFF] 2022/10/08 11:31:04 | [#008000] Core2D started!
